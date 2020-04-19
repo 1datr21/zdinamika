@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Configuration;
 using System.Collections.Specialized;
 using System.IO;
+using System.Xml;
 
 namespace zdinamika
 {
@@ -24,14 +25,59 @@ namespace zdinamika
                 f_xml_folder = value;
                 tbFolder.Text = value;
 
-            //    DirectoryInfo dir = new DirectoryInfo(f_xml_folder);
-                var subdirs = Directory.EnumerateDirectories(f_xml_folder);
-                foreach(var test_object in subdirs)
+                //    DirectoryInfo dir = new DirectoryInfo(f_xml_folder);
+                try
                 {
-                    //var newrow =
-                    dgvTests.Rows.Add(new string[] { Path.GetFileName(test_object) });
-                   // newrow.TObject = test_object;
-                    //Console.WriteLine(item.Name);
+                    if (!Directory.Exists(f_xml_folder))
+                    {
+                        throw new Exception("Такой папки нет. Выберите другую папку.");                       
+                    }
+                    var subdirs = Directory.EnumerateDirectories(f_xml_folder);
+                    foreach (var test_object in subdirs)
+                    {
+                        foreach (var start_obj in Directory.EnumerateDirectories(test_object))
+                        {
+                            foreach (var test_item in Directory.EnumerateFiles(start_obj, "*.pke"))
+                            {
+                                string end_date = "";
+                                string scheme = "";
+                                this.GetPKEInfo(test_item, ref end_date, ref scheme);
+                                dgvTests.Rows.Add(new string[] {
+                                    Path.GetFileName(test_object),
+                                    Path.GetFileName(start_obj),
+                                    end_date
+                                });
+                            }
+                        }
+                        // newrow.TObject = test_object;
+                        //Console.WriteLine(item.Name);
+                    }
+                }
+                catch(System.Exception exc)
+                {
+                    MessageBox.Show(exc.Message);
+                }
+            }
+        }
+
+        private void GetPKEInfo(string pke_file,ref string end_date, ref string scheme)
+        {
+            XmlTextReader reader = new XmlTextReader(pke_file);
+            while (reader.Read())
+            {
+                switch (reader.NodeType)
+                {
+                    case XmlNodeType.Element: // Узел является элементом.
+                       // Console.Write("<" + reader.Name);
+                      //  Console.WriteLine(">");
+                        break;
+                    case XmlNodeType.Text: // Вывести текст в каждом элементе.
+                     //   Console.WriteLine(reader.Value);
+                        break;
+                    case XmlNodeType.EndElement: // Вывести конец элемента.
+                     //   Console.Write("</" + reader.Name);
+                      //  Console.WriteLine(">");
+                        break;
                 }
             }
         }
