@@ -70,6 +70,10 @@ namespace zdinamika
                     case XmlNodeType.Element: // Узел является элементом.
                        // Console.Write("<" + reader.Name);
                       //  Console.WriteLine(">");
+                        if(reader.Name == "Param_Check_PKE")
+                        {
+                             end_date = reader.GetAttribute("TimeStop");
+                        }
                         break;
                     case XmlNodeType.Text: // Вывести текст в каждом элементе.
                      //   Console.WriteLine(reader.Value);
