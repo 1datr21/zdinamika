@@ -46,14 +46,14 @@ namespace zdinamika
                     {
                         foreach (var test_item in Directory.EnumerateFiles(start_obj, "*.pke"))
                         {
-                            string end_date = "";
+                            DateTime end_date = new DateTime(); 
                             string scheme = "";
                             string avg_time = "";
                             this.GetPKEInfo(test_item, 
                                 ref end_date, 
                                 ref scheme,
                                 ref avg_time);
-                            dgvTests.Rows.Add(new string[] {
+                            dgvTests.Rows.Add(new object[] {
                                     Path.GetFileName(test_object),
                                     Path.GetFileName(start_obj),
                                     end_date,
@@ -70,7 +70,7 @@ namespace zdinamika
             }
         }
 
-        private void GetPKEInfo(string pke_file,ref string end_date, ref string scheme, ref string avg_time)
+        private void GetPKEInfo(string pke_file,ref DateTime end_date, ref string scheme, ref string avg_time)
         {
             XmlTextReader reader = new XmlTextReader(pke_file);
             while (reader.Read())
@@ -82,12 +82,13 @@ namespace zdinamika
                       //  Console.WriteLine(">");
                         if(reader.Name == "Param_Check_PKE")
                         {
-                            end_date = reader.GetAttribute("TimeStop");
+                            end_date = new DateTime(Convert.ToInt64(reader.GetAttribute("TimeStop")));
                             avg_time = reader.GetAttribute("averaging_interval_time");
+                            scheme = reader.GetAttribute("active_cxema");
                         }
                         if (reader.Name == "Result_Check_PKE")
                         {
-                            scheme = reader.GetAttribute("pke_cxema");
+                            //scheme = reader.GetAttribute("pke_cxema");
                         }
                         break;
                     case XmlNodeType.Text: // Вывести текст в каждом элементе.
