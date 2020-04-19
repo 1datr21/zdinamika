@@ -26,41 +26,51 @@ namespace zdinamika
                 tbFolder.Text = value;
 
                 //    DirectoryInfo dir = new DirectoryInfo(f_xml_folder);
-                try
-                {
-                    if (!Directory.Exists(f_xml_folder))
-                    {
-                        throw new Exception("Такой папки нет. Выберите другую папку.");                       
-                    }
-                    var subdirs = Directory.EnumerateDirectories(f_xml_folder);
-                    foreach (var test_object in subdirs)
-                    {
-                        foreach (var start_obj in Directory.EnumerateDirectories(test_object))
-                        {
-                            foreach (var test_item in Directory.EnumerateFiles(start_obj, "*.pke"))
-                            {
-                                string end_date = "";
-                                string scheme = "";
-                                this.GetPKEInfo(test_item, ref end_date, ref scheme);
-                                dgvTests.Rows.Add(new string[] {
-                                    Path.GetFileName(test_object),
-                                    Path.GetFileName(start_obj),
-                                    end_date
-                                });
-                            }
-                        }
-                        // newrow.TObject = test_object;
-                        //Console.WriteLine(item.Name);
-                    }
-                }
-                catch(System.Exception exc)
-                {
-                    MessageBox.Show(exc.Message);
-                }
+                this.UpdateTable();
             }
         }
 
-        private void GetPKEInfo(string pke_file,ref string end_date, ref string scheme)
+        private void UpdateTable()
+        {
+            try
+            {
+                if (!Directory.Exists(f_xml_folder))
+                {
+                    throw new Exception("Такой папки нет. Выберите другую папку.");
+                }
+                var subdirs = Directory.EnumerateDirectories(f_xml_folder);
+                dgvTests.Rows.Clear();
+                foreach (var test_object in subdirs)
+                {
+                    foreach (var start_obj in Directory.EnumerateDirectories(test_object))
+                    {
+                        foreach (var test_item in Directory.EnumerateFiles(start_obj, "*.pke"))
+                        {
+                            string end_date = "";
+                            string scheme = "";
+                            string avg_time = "";
+                            this.GetPKEInfo(test_item, 
+                                ref end_date, 
+                                ref scheme,
+                                ref avg_time);
+                            dgvTests.Rows.Add(new string[] {
+                                    Path.GetFileName(test_object),
+                                    Path.GetFileName(start_obj),
+                                    end_date,
+                                    scheme,
+                                    avg_time
+                                });
+                        }
+                    }
+                }
+            }
+            catch (System.Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+        }
+
+        private void GetPKEInfo(string pke_file,ref string end_date, ref string scheme, ref string avg_time)
         {
             XmlTextReader reader = new XmlTextReader(pke_file);
             while (reader.Read())
@@ -72,7 +82,12 @@ namespace zdinamika
                       //  Console.WriteLine(">");
                         if(reader.Name == "Param_Check_PKE")
                         {
-                             end_date = reader.GetAttribute("TimeStop");
+                            end_date = reader.GetAttribute("TimeStop");
+                            avg_time = reader.GetAttribute("averaging_interval_time");
+                        }
+                        if (reader.Name == "Result_Check_PKE")
+                        {
+                            scheme = reader.GetAttribute("pke_cxema");
                         }
                         break;
                     case XmlNodeType.Text: // Вывести текст в каждом элементе.
@@ -115,6 +130,11 @@ namespace zdinamika
             {
                 this.XmlFolder = fldr;
             }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            UpdateTable();
         }
     }
 }

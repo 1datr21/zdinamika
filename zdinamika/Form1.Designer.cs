@@ -31,12 +31,13 @@
             this.btnFolder = new System.Windows.Forms.Button();
             this.tbFolder = new System.Windows.Forms.TextBox();
             this.dgvTests = new System.Windows.Forms.DataGridView();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.TObject = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StopTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Scheme = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Interval = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTests)).BeginInit();
             this.SuspendLayout();
             // 
@@ -74,16 +75,9 @@
             this.Interval});
             this.dgvTests.Location = new System.Drawing.Point(13, 50);
             this.dgvTests.Name = "dgvTests";
+            this.dgvTests.ReadOnly = true;
             this.dgvTests.Size = new System.Drawing.Size(751, 257);
             this.dgvTests.TabIndex = 2;
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 316);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(773, 22);
-            this.statusStrip1.TabIndex = 3;
-            this.statusStrip1.Text = "statusStrip1";
             // 
             // TObject
             // 
@@ -111,11 +105,30 @@
             this.Interval.HeaderText = "Интервал измерения";
             this.Interval.Name = "Interval";
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Location = new System.Drawing.Point(0, 316);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(773, 22);
+            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(686, 21);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Обновить";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(773, 338);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.dgvTests);
             this.Controls.Add(this.tbFolder);
@@ -140,6 +153,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn StopTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn Scheme;
         private System.Windows.Forms.DataGridViewTextBoxColumn Interval;
+        private System.Windows.Forms.Button button1;
     }
 }
 
