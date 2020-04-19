@@ -30,6 +30,9 @@
         {
             this.btnFolder = new System.Windows.Forms.Button();
             this.tbFolder = new System.Windows.Forms.TextBox();
+            this.dgvTests = new System.Windows.Forms.DataGridView();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTests)).BeginInit();
             this.SuspendLayout();
             // 
             // btnFolder
@@ -49,16 +52,38 @@
             this.tbFolder.Size = new System.Drawing.Size(340, 20);
             this.tbFolder.TabIndex = 1;
             // 
+            // dgvTests
+            // 
+            this.dgvTests.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvTests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTests.Location = new System.Drawing.Point(13, 50);
+            this.dgvTests.Name = "dgvTests";
+            this.dgvTests.Size = new System.Drawing.Size(751, 257);
+            this.dgvTests.TabIndex = 2;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Location = new System.Drawing.Point(0, 316);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(773, 22);
+            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(773, 338);
+            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.dgvTests);
             this.Controls.Add(this.tbFolder);
             this.Controls.Add(this.btnFolder);
             this.Name = "Form1";
             this.Text = "НПП \"Динамика\"";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTests)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -68,6 +93,8 @@
 
         private System.Windows.Forms.Button btnFolder;
         private System.Windows.Forms.TextBox tbFolder;
+        private System.Windows.Forms.DataGridView dgvTests;
+        private System.Windows.Forms.StatusStrip statusStrip1;
     }
 }
 
