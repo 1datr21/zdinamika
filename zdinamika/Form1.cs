@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
+using System.Collections.Specialized;
 
 namespace zdinamika
 {
@@ -35,7 +37,22 @@ namespace zdinamika
             if (res != null)
             {
                 this.XmlFolder = fbd.SelectedPath;
+                System.Configuration.Configuration currentConfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                // добавляем позицию в раздел AppSettings
+                currentConfig.AppSettings.Settings.Add("folder", fbd.SelectedPath);
+                //сохраняем
+                currentConfig.Save(ConfigurationSaveMode.Full);
+                //принудительно перезагружаем соотвествующую секцию
+                ConfigurationManager.RefreshSection("appSettings");
+            }
+        }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            string fldr = ConfigurationManager.AppSettings.Get("folder");
+            if (fldr != null)
+            {
+                this.XmlFolder = fldr;
             }
         }
     }
