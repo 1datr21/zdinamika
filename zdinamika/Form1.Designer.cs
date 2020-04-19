@@ -28,35 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnFolder = new System.Windows.Forms.Button();
+            this.tbFolder = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // button1
+            // btnFolder
             // 
-            this.button1.Location = new System.Drawing.Point(359, 10);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(98, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Выбрать папку";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnFolder.Location = new System.Drawing.Point(359, 10);
+            this.btnFolder.Name = "btnFolder";
+            this.btnFolder.Size = new System.Drawing.Size(98, 23);
+            this.btnFolder.TabIndex = 0;
+            this.btnFolder.Text = "Выбрать папку";
+            this.btnFolder.UseVisualStyleBackColor = true;
+            this.btnFolder.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textBox1
+            // tbFolder
             // 
-            this.textBox1.Location = new System.Drawing.Point(13, 13);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(340, 20);
-            this.textBox1.TabIndex = 1;
+            this.tbFolder.Location = new System.Drawing.Point(13, 13);
+            this.tbFolder.Name = "tbFolder";
+            this.tbFolder.Size = new System.Drawing.Size(340, 20);
+            this.tbFolder.TabIndex = 1;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.tbFolder);
+            this.Controls.Add(this.btnFolder);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "НПП \"Динамика\"";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -64,8 +65,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btnFolder;
+        private System.Windows.Forms.TextBox tbFolder;
     }
 }
 
