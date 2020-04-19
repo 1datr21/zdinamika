@@ -32,6 +32,11 @@
             this.tbFolder = new System.Windows.Forms.TextBox();
             this.dgvTests = new System.Windows.Forms.DataGridView();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.TObject = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StopTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Scheme = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Interval = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTests)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,10 +59,19 @@
             // 
             // dgvTests
             // 
+            this.dgvTests.AllowUserToAddRows = false;
+            this.dgvTests.AllowUserToDeleteRows = false;
+            this.dgvTests.AllowUserToResizeRows = false;
             this.dgvTests.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvTests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTests.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.TObject,
+            this.StartTime,
+            this.StopTime,
+            this.Scheme,
+            this.Interval});
             this.dgvTests.Location = new System.Drawing.Point(13, 50);
             this.dgvTests.Name = "dgvTests";
             this.dgvTests.Size = new System.Drawing.Size(751, 257);
@@ -70,6 +84,32 @@
             this.statusStrip1.Size = new System.Drawing.Size(773, 22);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // TObject
+            // 
+            this.TObject.HeaderText = "Имя объекта";
+            this.TObject.Name = "TObject";
+            this.TObject.Width = 250;
+            // 
+            // StartTime
+            // 
+            this.StartTime.HeaderText = "Время старта";
+            this.StartTime.Name = "StartTime";
+            // 
+            // StopTime
+            // 
+            this.StopTime.HeaderText = "Время остановки";
+            this.StopTime.Name = "StopTime";
+            // 
+            // Scheme
+            // 
+            this.Scheme.HeaderText = "Схема проверки";
+            this.Scheme.Name = "Scheme";
+            // 
+            // Interval
+            // 
+            this.Interval.HeaderText = "Интервал измерения";
+            this.Interval.Name = "Interval";
             // 
             // Form1
             // 
@@ -95,6 +135,11 @@
         private System.Windows.Forms.TextBox tbFolder;
         private System.Windows.Forms.DataGridView dgvTests;
         private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TObject;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StartTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StopTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Scheme;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Interval;
     }
 }
 

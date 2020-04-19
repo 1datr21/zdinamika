@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
 using System.Collections.Specialized;
+using System.IO;
 
 namespace zdinamika
 {
@@ -22,6 +23,16 @@ namespace zdinamika
             {
                 f_xml_folder = value;
                 tbFolder.Text = value;
+
+            //    DirectoryInfo dir = new DirectoryInfo(f_xml_folder);
+                var subdirs = Directory.EnumerateDirectories(f_xml_folder);
+                foreach(var test_object in subdirs)
+                {
+                    //var newrow =
+                    dgvTests.Rows.Add(new string[] { Path.GetFileName(test_object) });
+                   // newrow.TObject = test_object;
+                    //Console.WriteLine(item.Name);
+                }
             }
         }
 
