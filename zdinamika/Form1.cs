@@ -116,11 +116,36 @@ namespace zdinamika
                 this.XmlFolder = fbd.SelectedPath;
                 System.Configuration.Configuration currentConfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
                 // добавляем позицию в раздел AppSettings
-                currentConfig.AppSettings.Settings.Add("folder", fbd.SelectedPath);
+
+                //currentConfig.AppSettings.Settings.Add("folder", fbd.SelectedPath);
+                AddUpdateAppSettings("folder", fbd.SelectedPath);
                 //сохраняем
                 currentConfig.Save(ConfigurationSaveMode.Full);
                 //принудительно перезагружаем соотвествующую секцию
                 ConfigurationManager.RefreshSection("appSettings");
+            }
+        }
+
+        static void AddUpdateAppSettings(string key, string value)
+        {
+            try
+            {
+                var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                var settings = configFile.AppSettings.Settings;
+                if (settings[key] == null)
+                {
+                    settings.Add(key, value);
+                }
+                else
+                {
+                    settings[key].Value = value;
+                }
+                configFile.Save(ConfigurationSaveMode.Modified);
+                ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
+            }
+            catch (ConfigurationErrorsException)
+            {
+                Console.WriteLine("Error writing app settings");
             }
         }
 
