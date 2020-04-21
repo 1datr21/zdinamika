@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Xml;
 
 namespace zdinamika
 {
@@ -24,9 +25,45 @@ namespace zdinamika
 
         private void FormItem_Load(object sender, EventArgs e)
         {
-            foreach (var test_item in Directory.EnumerateFiles(this.folder, this.Uid+"_*.pke"))
+            int mode = 0;
+            foreach (var pke_file in Directory.EnumerateFiles(this.folder, this.Uid+"_*.pke"))
             {
+                XmlTextReader reader = new XmlTextReader(pke_file);
 
+                if (mode == 0)
+                {
+
+                }
+            }
+        }
+
+        private void DetectMode(XmlTextReader reader, ref int mode)
+        {
+            while (reader.Read())
+            {
+                switch (reader.NodeType)
+                {
+                    case XmlNodeType.Element: // Узел является элементом.
+                                              // Console.Write("<" + reader.Name);
+                                              //  Console.WriteLine(">");
+                        if (reader.Name == "Param_Check_PKE")
+                        {
+                            
+                            mode = Convert.ToInt16(reader.GetAttribute("active_cxema"));
+                        }
+                        if (reader.Name == "Result_Check_PKE")
+                        {
+                            //scheme = reader.GetAttribute("pke_cxema");
+                        }
+                        break;
+                    case XmlNodeType.Text: // Вывести текст в каждом элементе.
+                                           //   Console.WriteLine(reader.Value);
+                        break;
+                    case XmlNodeType.EndElement: // Вывести конец элемента.
+                                                 //   Console.Write("</" + reader.Name);
+                                                 //  Console.WriteLine(">");
+                        break;
+                }
             }
         }
     }
