@@ -32,7 +32,22 @@ namespace zdinamika
 
                 if (mode == 0)
                 {
+                    this.DetectMode(reader, ref mode);
+                }
+                else
+                {
+                    reader.ResetState();
+                    switch(mode)
+                    {
+                        case 1: {
+                                // UA, IA, PA, QA, SA, Freq, sigmaUy
+                            }
+                            break;
 
+                        case 2: {
+
+                            } break;
+                    }
                 }
             }
         }
@@ -50,6 +65,7 @@ namespace zdinamika
                         {
                             
                             mode = Convert.ToInt16(reader.GetAttribute("active_cxema"));
+                            return;
                         }
                         if (reader.Name == "Result_Check_PKE")
                         {
