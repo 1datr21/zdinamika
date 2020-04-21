@@ -48,6 +48,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "FormItem";
             this.Text = "FormItem";
+            this.Load += new System.EventHandler(this.FormItem_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 

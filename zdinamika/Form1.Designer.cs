@@ -31,13 +31,15 @@
             this.btnFolder = new System.Windows.Forms.Button();
             this.tbFolder = new System.Windows.Forms.TextBox();
             this.dgvTests = new System.Windows.Forms.DataGridView();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.button1 = new System.Windows.Forms.Button();
             this.TObject = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StartTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StopTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Scheme = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Interval = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.button1 = new System.Windows.Forms.Button();
+            this.Uid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.folder = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTests)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,38 +74,16 @@
             this.StartTime,
             this.StopTime,
             this.Scheme,
-            this.Interval});
+            this.Interval,
+            this.Uid,
+            this.folder});
             this.dgvTests.Location = new System.Drawing.Point(13, 50);
             this.dgvTests.Name = "dgvTests";
             this.dgvTests.ReadOnly = true;
             this.dgvTests.Size = new System.Drawing.Size(751, 257);
             this.dgvTests.TabIndex = 2;
-            // 
-            // TObject
-            // 
-            this.TObject.HeaderText = "Имя объекта";
-            this.TObject.Name = "TObject";
-            this.TObject.Width = 250;
-            // 
-            // StartTime
-            // 
-            this.StartTime.HeaderText = "Время старта";
-            this.StartTime.Name = "StartTime";
-            // 
-            // StopTime
-            // 
-            this.StopTime.HeaderText = "Время остановки";
-            this.StopTime.Name = "StopTime";
-            // 
-            // Scheme
-            // 
-            this.Scheme.HeaderText = "Схема проверки";
-            this.Scheme.Name = "Scheme";
-            // 
-            // Interval
-            // 
-            this.Interval.HeaderText = "Интервал измерения";
-            this.Interval.Name = "Interval";
+            this.dgvTests.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTests_CellDoubleClick);
+            this.dgvTests.Click += new System.EventHandler(this.dgvTests_Click);
             // 
             // statusStrip1
             // 
@@ -122,6 +102,51 @@
             this.button1.Text = "Обновить";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // TObject
+            // 
+            this.TObject.HeaderText = "Имя объекта";
+            this.TObject.Name = "TObject";
+            this.TObject.ReadOnly = true;
+            this.TObject.Width = 250;
+            // 
+            // StartTime
+            // 
+            this.StartTime.HeaderText = "Время старта";
+            this.StartTime.Name = "StartTime";
+            this.StartTime.ReadOnly = true;
+            // 
+            // StopTime
+            // 
+            this.StopTime.HeaderText = "Время остановки";
+            this.StopTime.Name = "StopTime";
+            this.StopTime.ReadOnly = true;
+            // 
+            // Scheme
+            // 
+            this.Scheme.HeaderText = "Схема проверки";
+            this.Scheme.Name = "Scheme";
+            this.Scheme.ReadOnly = true;
+            // 
+            // Interval
+            // 
+            this.Interval.HeaderText = "Интервал измерения";
+            this.Interval.Name = "Interval";
+            this.Interval.ReadOnly = true;
+            // 
+            // Uid
+            // 
+            this.Uid.HeaderText = "UID";
+            this.Uid.Name = "Uid";
+            this.Uid.ReadOnly = true;
+            this.Uid.Visible = false;
+            // 
+            // folder
+            // 
+            this.folder.HeaderText = "folder";
+            this.folder.Name = "folder";
+            this.folder.ReadOnly = true;
+            this.folder.Visible = false;
             // 
             // Form1
             // 
@@ -148,12 +173,14 @@
         private System.Windows.Forms.TextBox tbFolder;
         private System.Windows.Forms.DataGridView dgvTests;
         private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn TObject;
         private System.Windows.Forms.DataGridViewTextBoxColumn StartTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn StopTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn Scheme;
         private System.Windows.Forms.DataGridViewTextBoxColumn Interval;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Uid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn folder;
     }
 }
 

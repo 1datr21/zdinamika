@@ -49,16 +49,20 @@ namespace zdinamika
                             DateTime end_date = new DateTime(); 
                             string scheme = "";
                             string avg_time = "";
+                            string uid = "";
                             this.GetPKEInfo(test_item, 
                                 ref end_date, 
                                 ref scheme,
-                                ref avg_time);
+                                ref avg_time,
+                                ref uid);
                             dgvTests.Rows.Add(new object[] {
                                     Path.GetFileName(test_object),
                                     Path.GetFileName(start_obj),
                                     end_date,
                                     scheme,
-                                    avg_time
+                                    avg_time,
+                                    uid,
+                                    start_obj
                                 });
                         }
                     }
@@ -70,8 +74,13 @@ namespace zdinamika
             }
         }
 
-        private void GetPKEInfo(string pke_file,ref DateTime end_date, ref string scheme, ref string avg_time)
+        private void GetPKEInfo(string pke_file,ref DateTime end_date, ref string scheme, ref string avg_time, ref string uid)
         {
+            string[] words = Path.GetFileName(pke_file).Split(new char[] { '_' });
+            if(words.Length>0)
+            {
+                uid = words[0];
+            }
             XmlTextReader reader = new XmlTextReader(pke_file);
             while (reader.Read())
             {
@@ -161,6 +170,20 @@ namespace zdinamika
         private void button1_Click_1(object sender, EventArgs e)
         {
             UpdateTable();
+        }
+
+        private void dgvTests_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void dgvTests_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var curr_row = this.dgvTests.Rows[this.dgvTests.CurrentRow.Index];
+            string uid = curr_row.Cells[5].Value.ToString();
+            string fldr = curr_row.Cells[6].Value.ToString();
+            var fi = new FormItem(uid,fldr);
+            fi.Show();
         }
     }
 }
