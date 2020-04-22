@@ -58,7 +58,7 @@ namespace zdinamika
                             dgvTests.Rows.Add(new object[] {
                                     Path.GetFileName(test_object),
                                     Path.GetFileName(start_obj),
-                                    end_date,
+                                    end_date.ToString("dd'/'mm'/'yy hh:mm:ss"),
                                     scheme,
                                     avg_time,
                                     uid,
@@ -91,7 +91,7 @@ namespace zdinamika
                       //  Console.WriteLine(">");
                         if(reader.Name == "Param_Check_PKE")
                         {
-                            end_date = new DateTime(Convert.ToInt64(reader.GetAttribute("TimeStop")));
+                            end_date = Utils.NumStr2DT(reader.GetAttribute("TimeStop"));
                             avg_time = reader.GetAttribute("averaging_interval_time");
                             scheme = reader.GetAttribute("active_cxema");
                         }
@@ -125,9 +125,7 @@ namespace zdinamika
             {
                 this.XmlFolder = fbd.SelectedPath;
                 System.Configuration.Configuration currentConfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                // добавляем позицию в раздел AppSettings
-
-                //currentConfig.AppSettings.Settings.Add("folder", fbd.SelectedPath);
+                // добавляем позицию в раздел AppSetting
                 AddUpdateAppSettings("folder", fbd.SelectedPath);
                 //сохраняем
                 currentConfig.Save(ConfigurationSaveMode.Full);
@@ -173,11 +171,7 @@ namespace zdinamika
             UpdateTable();
         }
 
-        private void dgvTests_Click(object sender, EventArgs e)
-        {
-            
-        }
-
+        // открыть по uid
         private void dgvTests_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             var curr_row = this.dgvTests.Rows[this.dgvTests.CurrentRow.Index];

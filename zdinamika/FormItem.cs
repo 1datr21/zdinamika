@@ -99,8 +99,9 @@ namespace zdinamika
                             if (reader.Name == "Result_Check_PKE")
                             {
                                 //scheme = reader.GetAttribute("pke_cxema");
-                                List<string> vals = new List<string>();
-                                vals.Add(_uid);
+                                List<object> vals = new List<object>();
+                                string TimeTek = reader.GetAttribute("TimeTek");
+                                vals.Add(Utils.NumStr2DT(TimeTek));
                                 foreach (string prop in tparams[mode - 1])
                                 {
                                     string propval = reader.GetAttribute(prop);
@@ -177,8 +178,6 @@ namespace zdinamika
                 for (int j = 0; j < dgvResults.RowCount; j++)
                 {
                     wsh1.Cells[j+2,i+1] = (dgvResults[i, j].Value).ToString();
-                    //wb1.Worksheets(1).Cells(1, 1);
-                   //.Rows[j + 1].Columns[i + 1] = (dgvResults[i, j].Value).ToString();
                 }
             }
             ExcelApp.Visible = true;

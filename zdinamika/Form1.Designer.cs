@@ -83,7 +83,6 @@
             this.dgvTests.Size = new System.Drawing.Size(751, 257);
             this.dgvTests.TabIndex = 2;
             this.dgvTests.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTests_CellDoubleClick);
-            this.dgvTests.Click += new System.EventHandler(this.dgvTests_Click);
             // 
             // statusStrip1
             // 
