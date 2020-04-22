@@ -109,6 +109,7 @@ namespace zdinamika
                         break;
                 }
             }
+            reader.Close();
         }
 
         public Form1()
