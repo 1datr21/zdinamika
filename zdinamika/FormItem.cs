@@ -98,10 +98,9 @@ namespace zdinamika
                             }
                             if (reader.Name == "Result_Check_PKE")
                             {
-                                //scheme = reader.GetAttribute("pke_cxema");
                                 List<object> vals = new List<object>();
                                 string TimeTek = reader.GetAttribute("TimeTek");
-                                vals.Add(Utils.NumStr2DT(TimeTek));
+                                vals.Add(Utils.NumStr2DT(TimeTek).ToString("dd'/'mm'/'yyyy hh:mm"));
                                 foreach (string prop in tparams[mode - 1])
                                 {
                                     string propval = reader.GetAttribute(prop);

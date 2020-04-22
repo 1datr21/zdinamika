@@ -55,10 +55,11 @@ namespace zdinamika
                                 ref scheme,
                                 ref avg_time,
                                 ref uid);
+                            DateTime start_date = DateTime.ParseExact(Path.GetFileName(start_obj), "dd.MM.yyyy HH.mm", System.Globalization.CultureInfo.InvariantCulture);
                             dgvTests.Rows.Add(new object[] {
                                     Path.GetFileName(test_object),
-                                    Path.GetFileName(start_obj),
-                                    end_date.ToString("dd'/'mm'/'yy hh:mm:ss"),
+                                    start_date.ToString("dd'/'mm'/'yyyy hh:mm"),
+                                    end_date.ToString("dd'/'mm'/'yyyy hh:mm"),
                                     scheme,
                                     avg_time,
                                     uid,
