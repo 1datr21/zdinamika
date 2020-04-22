@@ -121,7 +121,7 @@ namespace zdinamika
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             DialogResult res = fbd.ShowDialog();
-            if (res != null)
+            if (res == DialogResult.OK )
             {
                 this.XmlFolder = fbd.SelectedPath;
                 System.Configuration.Configuration currentConfig = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
