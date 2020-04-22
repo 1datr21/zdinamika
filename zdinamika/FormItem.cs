@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Xml;
+using Microsoft.Office.Interop.Excel;
 
 namespace zdinamika
 {
@@ -148,6 +149,39 @@ namespace zdinamika
                         break;
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.build_table();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.ExportXLS();
+        }
+
+        private void ExportXLS()
+        {
+            Microsoft.Office.Interop.Excel.Application ExcelApp = new Microsoft.Office.Interop.Excel.Application();
+
+            Microsoft.Office.Interop.Excel.Workbook wb1 = ExcelApp.Workbooks.Add();
+            Microsoft.Office.Interop.Excel.Worksheet wsh1 = wb1.Worksheets[1];
+            for (int i = 0; i < this.dgvResults.ColumnCount; i++)
+            {
+                wsh1.Cells[1, i + 1] = dgvResults.Columns[i].HeaderText;
+                wsh1.Columns[i+1].ColumnWidth = dgvResults.Columns[i].Width/5;
+            }
+            for (int i = 0; i < this.dgvResults.ColumnCount; i++)
+            {
+                for (int j = 0; j < dgvResults.RowCount; j++)
+                {
+                    wsh1.Cells[j+2,i+1] = (dgvResults[i, j].Value).ToString();
+                    //wb1.Worksheets(1).Cells(1, 1);
+                   //.Rows[j + 1].Columns[i + 1] = (dgvResults[i, j].Value).ToString();
+                }
+            }
+            ExcelApp.Visible = true;
         }
     }
 }
